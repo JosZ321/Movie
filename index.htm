@@ -14,8 +14,6 @@
             height: 100%;
             overflow: hidden;
         }
-
-        /* Website iframe — full screen, visible but locked */
         #site-frame {
             position: fixed;
             top: 0; left: 0;
@@ -30,8 +28,6 @@
         #site-frame.unlocked {
             filter: brightness(1) saturate(1);
         }
-
-        /* Very light overlay — site is clearly visible */
         #overlay {
             position: fixed;
             top: 0; left: 0; right: 0; bottom: 0;
@@ -49,8 +45,6 @@
             visibility: hidden;
             pointer-events: none;
         }
-
-        /* Glassmorphism Popup — transparent, pro look */
         .popup-box {
             background: rgba(255, 255, 255, 0.06);
             border-radius: 24px;
@@ -58,9 +52,7 @@
             max-width: 360px;
             width: 100%;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow:
-                0 8px 32px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
             text-align: center;
             animation: fadeScale 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             backdrop-filter: blur(20px) saturate(1.5);
@@ -70,164 +62,62 @@
             from { transform: scale(0.9) translateY(20px); opacity: 0; }
             to { transform: scale(1) translateY(0); opacity: 1; }
         }
-
-        .popup-box .icon {
-            font-size: 44px;
-            margin-bottom: 12px;
-            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3));
-        }
-        .popup-box h2 {
-            font-size: 22px;
-            margin-bottom: 8px;
-            color: #fff;
-            font-weight: 700;
-            letter-spacing: -0.3px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        }
-        .popup-box p {
-            color: rgba(255, 255, 255, 0.75);
-            margin-bottom: 24px;
-            font-size: 14px;
-            line-height: 1.5;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-        }
-
+        .popup-box .icon { font-size: 44px; margin-bottom: 12px; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.3)); }
+        .popup-box h2 { font-size: 22px; margin-bottom: 8px; color: #fff; font-weight: 700; letter-spacing: -0.3px; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .popup-box p { color: rgba(255, 255, 255, 0.75); margin-bottom: 24px; font-size: 14px; line-height: 1.5; text-shadow: 0 1px 2px rgba(0,0,0,0.2); }
         .channel-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 10px;
-            background: rgba(229, 9, 20, 0.9);
-            color: #fff;
-            text-decoration: none;
-            border-radius: 14px;
-            font-weight: 600;
-            font-size: 14.5px;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+            width: 100%; padding: 14px; margin-bottom: 10px;
+            background: rgba(229, 9, 20, 0.9); color: #fff;
+            text-decoration: none; border-radius: 14px;
+            font-weight: 600; font-size: 14.5px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            cursor: pointer;
-            transition: all 0.25s ease;
-            backdrop-filter: blur(4px);
+            cursor: pointer; transition: all 0.25s ease; backdrop-filter: blur(4px);
         }
-        .channel-btn:hover, .channel-btn:active {
-            transform: translateY(-1px);
-            background: rgba(229, 9, 20, 1);
-            box-shadow: 0 4px 16px rgba(229, 9, 20, 0.3);
-        }
-        .channel-btn.secondary {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-        }
-        .channel-btn.secondary:hover {
-            background: rgba(255, 255, 255, 0.14);
-            box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05);
-        }
-
+        .channel-btn:hover, .channel-btn:active { transform: translateY(-1px); background: rgba(229, 9, 20, 1); box-shadow: 0 4px 16px rgba(229, 9, 20, 0.3); }
+        .channel-btn.secondary { background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.15); }
+        .channel-btn.secondary:hover { background: rgba(255, 255, 255, 0.14); box-shadow: 0 4px 16px rgba(255, 255, 255, 0.05); }
         .check-btn {
-            width: 100%;
-            padding: 15px;
-            background: rgba(40, 167, 69, 0.9);
-            color: #fff;
+            width: 100%; padding: 15px;
+            background: rgba(40, 167, 69, 0.9); color: #fff;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 14px;
-            font-weight: 700;
-            font-size: 15px;
-            margin-top: 6px;
-            cursor: pointer;
-            transition: all 0.25s ease;
-            backdrop-filter: blur(4px);
+            border-radius: 14px; font-weight: 700; font-size: 15px;
+            margin-top: 6px; cursor: pointer; transition: all 0.25s ease; backdrop-filter: blur(4px);
         }
-        .check-btn:hover {
-            background: rgba(40, 167, 69, 1);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3);
-        }
-        .check-btn:disabled {
-            background: rgba(80, 80, 80, 0.6);
-            transform: none;
-            box-shadow: none;
-            cursor: not-allowed;
-        }
-
-        #status {
-            margin-top: 12px;
-            color: #ff8585;
-            font-size: 13px;
-            min-height: 20px;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-        }
-
-        /* Loader */
+        .check-btn:hover { background: rgba(40, 167, 69, 1); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3); }
+        .check-btn:disabled { background: rgba(80, 80, 80, 0.6); transform: none; box-shadow: none; cursor: not-allowed; }
+        #status { margin-top: 12px; color: #ff8585; font-size: 13px; min-height: 20px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
         #loader {
-            position: fixed;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: #0a0a0a;
-            z-index: 200;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 14px;
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: #0a0a0a; z-index: 200;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 14px; transition: opacity 0.5s ease;
         }
-        #loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        .spinner {
-            width: 42px; height: 42px;
-            border: 3px solid rgba(255, 255, 255, 0.1);
-            border-top-color: #e50914;
-            border-radius: 50%;
-            animation: spin 0.9s linear infinite;
-        }
+        #loader.hidden { opacity: 0; pointer-events: none; }
+        .spinner { width: 42px; height: 42px; border: 3px solid rgba(255, 255, 255, 0.1); border-top-color: #e50914; border-radius: 50%; animation: spin 0.9s linear infinite; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loader-text {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 14px;
-            letter-spacing: 0.5px;
-        }
-
-        /* Unlock celebration */
-        .unlocked-glow {
-            animation: glowPulse 1s ease;
-        }
-        @keyframes glowPulse {
-            0% { filter: brightness(0.85); }
-            50% { filter: brightness(1.2); }
-            100% { filter: brightness(1); }
-        }
+        .loader-text { color: rgba(255, 255, 255, 0.6); font-size: 14px; letter-spacing: 0.5px; }
+        .unlocked-glow { animation: glowPulse 1s ease; }
+        @keyframes glowPulse { 0% { filter: brightness(0.85); } 50% { filter: brightness(1.2); } 100% { filter: brightness(1); } }
     </style>
 </head>
 <body>
 
-    <!-- Website loads immediately in background — clearly visible -->
     <iframe id="site-frame" src="https://www.t4tsa.cc/" allow="fullscreen"></iframe>
 
-    <!-- Light overlay + Glassmorphism Popup -->
     <div id="overlay">
         <div class="popup-box">
             <div class="icon">🔓</div>
             <h2>Unlock Full Access</h2>
             <p>Join the channels below to unlock all features and start streaming.</p>
-
-            <a href="https://t.me/SeriesBayX0" target="_blank" class="channel-btn">
-                📢 Join @SeriesBayX0
-            </a>
-            <a href="https://t.me/MugiwaraResearcher" target="_blank" class="channel-btn secondary">
-                📢 Join @MugiwaraResearcher
-            </a>
-
-            <button class="check-btn" id="checkBtn" onclick="verifyMembership()">
-                ✅ I've Joined, Unlock
-            </button>
+            <a href="https://t.me/SeriesBayX0" target="_blank" class="channel-btn">📢 Join @SeriesBayX0</a>
+            <a href="https://t.me/MugiwaraResearcher" target="_blank" class="channel-btn secondary">📢 Join @MugiwaraResearcher</a>
+            <button class="check-btn" id="checkBtn" onclick="verifyMembership()">✅ I've Joined, Unlock</button>
             <p id="status"></p>
         </div>
     </div>
 
-    <!-- Loader -->
     <div id="loader">
         <div class="spinner"></div>
         <p class="loader-text">Loading T4TSA...</p>
@@ -238,8 +128,7 @@
         tg.expand();
         tg.ready();
 
-        const BOT_API_URL = 'https://t4tsa-api.onrender.com/api/check';
-        const CHECK_CHANNEL = '@MugiwaraResearcher';
+        const BOT_API_URL = 'https://your-backend.onrender.com/api/check';
 
         let userId = null;
 
@@ -272,7 +161,6 @@
                 loader.classList.add('hidden');
 
                 if (data.joined) {
-                    // Unlock — fade overlay, brighten site
                     overlay.classList.add('hidden');
                     iframe.classList.add('unlocked');
                     iframe.classList.add('unlocked-glow');
