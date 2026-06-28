@@ -21,7 +21,6 @@
             height: 100%;
             border: none;
             z-index: 1;
-            opacity: 1;
             filter: brightness(0.85) saturate(1.1);
             transition: filter 0.6s ease;
         }
@@ -87,6 +86,7 @@
         .check-btn:hover { background: rgba(40, 167, 69, 1); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(40, 167, 69, 0.3); }
         .check-btn:disabled { background: rgba(80, 80, 80, 0.6); transform: none; box-shadow: none; cursor: not-allowed; }
         #status { margin-top: 12px; color: #ff8585; font-size: 13px; min-height: 20px; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
+        #debug-info { margin-top: 8px; color: #888; font-size: 11px; min-height: 16px; }
         #loader {
             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
             background: #0a0a0a; z-index: 200;
@@ -115,6 +115,7 @@
             <a href="https://t.me/MugiwaraResearcher" target="_blank" class="channel-btn secondary">📢 Join @MugiwaraResearcher</a>
             <button class="check-btn" id="checkBtn" onclick="verifyMembership()">✅ I've Joined, Unlock</button>
             <p id="status"></p>
+            <p id="debug-info"></p>
         </div>
     </div>
 
@@ -128,23 +129,26 @@
         tg.expand();
         tg.ready();
 
+        // ⚠️ REPLACE THIS WITH YOUR RENDER URL
         const BOT_API_URL = 'https://t4tsa-api.onrender.com/api/check';
-
         let userId = null;
 
         async function init() {
             if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
                 userId = tg.initDataUnsafe.user.id;
+                document.getElementById('debug-info').textContent = 'User ID: ' + userId;
                 await verifyMembership();
             } else {
                 document.getElementById('loader').classList.add('hidden');
                 document.getElementById('status').textContent = 'Open inside Telegram';
+                document.getElementById('debug-info').textContent = 'Not running in Telegram WebView';
             }
         }
 
         async function verifyMembership() {
             const btn = document.getElementById('checkBtn');
             const status = document.getElementById('status');
+            const debug = document.getElementById('debug-info');
             const loader = document.getElementById('loader');
             const overlay = document.getElementById('overlay');
             const iframe = document.getElementById('site-frame');
@@ -158,9 +162,13 @@
                 const response = await fetch(`${BOT_API_URL}?user_id=${userId}`);
                 const data = await response.json();
 
+                // DEBUG: Show raw API response
+                debug.textContent = 'API: ' + JSON.stringify(data);
+
                 loader.classList.add('hidden');
 
-                if (data.joined) {
+                // STRICT check: only hide if joined is EXACTLY true
+                if (data.joined === true) {
                     overlay.classList.add('hidden');
                     iframe.classList.add('unlocked');
                     iframe.classList.add('unlocked-glow');
@@ -171,6 +179,7 @@
             } catch (err) {
                 loader.classList.add('hidden');
                 status.textContent = 'Connection error. Tap to retry.';
+                debug.textContent = 'Error: ' + err.message;
                 console.error(err);
             } finally {
                 btn.disabled = false;
